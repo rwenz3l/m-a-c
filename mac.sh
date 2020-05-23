@@ -17,7 +17,7 @@ for f in $(find "${src}" -mindepth 1 -maxdepth 1 | sort); do
         """)
     if test -z ${exists}; then
         echo "Copy: ${fname}"
-        rclone -q copyto "${f}" "${target}/${f}" && \
+        rclone -q copyto "${f}" "${target}/${fname}" && \
         sqlite3 mac.db """
         INSERT INTO files (fname) VALUES ('$fname');
         """ && \
