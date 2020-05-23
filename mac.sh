@@ -10,7 +10,7 @@ sqlite3 mac.db """
         fhash string
     );
     """
-for f in $(find "${src}" -maxdepth 1 | sort); do
+for f in $(find "${src}" -mindepth 1 -maxdepth 1 | sort); do
     fname="$(basename "${f}")"
     exists=$(sqlite3 mac.db """
         SELECT * from files WHERE fname = '${fname}';
