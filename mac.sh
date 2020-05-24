@@ -25,7 +25,7 @@ sqlite3 ${MAC_DB_FILE} """
         fhash string
     );
     """
-for f in $(find "${src}" -mindepth 1 -maxdepth 1 | sort); do
+while IFS= read -r -d $'\0' f; do
     fname="$(basename "${f}")"
     exists=$(sqlite3 ${MAC_DB_FILE} """
         SELECT * from files WHERE fname = '${fname}';
@@ -40,4 +40,4 @@ for f in $(find "${src}" -mindepth 1 -maxdepth 1 | sort); do
     else
         echo "${fname} in database, skipping."
     fi
-done;
+done < <(find . -mindepth 1 -maxdepth 1 -print0)
