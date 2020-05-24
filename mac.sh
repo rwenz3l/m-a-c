@@ -40,4 +40,4 @@ while IFS= read -r -d $'\0' f; do
     else
         echo "${fname} in database, skipping."
     fi
-done < <(find . -mindepth 1 -maxdepth 1 -print0)
+done < <(find ${src} -mindepth 1 -maxdepth 1 -print0)
