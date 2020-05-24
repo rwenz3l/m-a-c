@@ -8,5 +8,3 @@ clean:
 
 test:
 	@bash mac.sh test target
-	@bash mac.sh test/ target
-	@bash mac.sh test target/
